@@ -35,11 +35,17 @@ main { min-height: 100svh; display: flex; flex-direction: column; align-items: c
 .glass { position: absolute; inset: 0; border-radius: 4%; pointer-events: none; border: 1px solid #ffffff12; box-shadow: inset 0 1px 1px #ffe0a330; transform: translateZ(45px); }
 .specular, .glare, .foil, .rainbow, .texture { position: absolute; inset: 0; border-radius: 4%; pointer-events: none; }
 .specular, .glare { transform: translateZ(35px); mix-blend-mode: screen; }
-.specular { background: linear-gradient(112deg, transparent 15%, #ffe5b622 40%, #fff8dd60 49%, #a6d9e625 54%, transparent 72%); background-size: 240% 240%; background-position: var(--glare-x) var(--glare-y); opacity: .14; }
-.glare { background: radial-gradient(ellipse at var(--glare-x) var(--glare-y), #fff4d15c, transparent 53%); opacity: calc(var(--glare-strength, .7) * .43); }
+.specular, .glare, .foil, .rainbow { overflow: hidden; }
+.specular::before, .glare::before, .foil::before, .rainbow::before { content: ''; position: absolute; inset: -30%; transform: translate3d(var(--light-x, 0%), var(--light-y, 0%), 0) rotate(var(--light-turn, 0deg)); will-change: transform; }
+.specular { opacity: .14; }
+.specular::before { background: linear-gradient(112deg, transparent 15%, #ffe5b622 40%, #fff8dd60 49%, #a6d9e625 54%, transparent 72%); }
+.glare { opacity: calc(var(--glare-strength, .7) * .43); }
+.glare::before { background: radial-gradient(ellipse at 50% 40%, #fff4d15c, transparent 53%); }
 .foil, .rainbow { transform: translateZ(32px); mix-blend-mode: screen; opacity: var(--foil-opacity); }
-.rainbow { background: conic-gradient(from var(--foil-angle) at var(--glare-x) var(--glare-y), #d2b975, #80c8ae, #919ddc, #c994b5, #dfb87e, #80c8ae, #d2b975); mask-image: radial-gradient(ellipse at 50% 49%, transparent 27%, #0003 52%, #000 85%); -webkit-mask-image: radial-gradient(ellipse at 50% 49%, transparent 27%, #0003 52%, #000 85%); }
-.foil { background: repeating-linear-gradient(125deg, #b9d8c033 0 1px, transparent 1px 5px), radial-gradient(ellipse at var(--glare-x) var(--glare-y), #c6e8cf77, transparent 60%); background-blend-mode: color-dodge; background-size: 160% 160%; background-position: var(--mx) var(--my); mask-image: linear-gradient(90deg, #000, transparent 32% 68%, #000); -webkit-mask-image: linear-gradient(90deg, #000, transparent 32% 68%, #000); }
+.rainbow { mask-image: radial-gradient(ellipse at 50% 49%, transparent 27%, #0003 52%, #000 85%); -webkit-mask-image: radial-gradient(ellipse at 50% 49%, transparent 27%, #0003 52%, #000 85%); }
+.rainbow::before { background: conic-gradient(from 120deg at 50% 50%, #d2b975, #80c8ae, #919ddc, #c994b5, #dfb87e, #80c8ae, #d2b975); }
+.foil { mask-image: linear-gradient(90deg, #000, transparent 32% 68%, #000); -webkit-mask-image: linear-gradient(90deg, #000, transparent 32% 68%, #000); }
+.foil::before { background: repeating-linear-gradient(125deg, #b9d8c033 0 1px, transparent 1px 5px), radial-gradient(ellipse at 50% 50%, #c6e8cf77, transparent 60%); background-blend-mode: color-dodge; }
 .texture { transform: translateZ(36px); background: url('assets/grain.svg'), repeating-linear-gradient(0deg, #fff4 0 .5px, transparent .5px 3px); background-size: 130px 130px, 100% 100%; opacity: .045; mix-blend-mode: soft-light; }
 .asset-label { position: absolute; top: 71%; left: 10%; right: 10%; transform: translateZ(37px); text-align: center; font: 8px monospace; padding: 4px; background: #101113dd; }
 .controls { margin-top: 27px; text-align: center; width: 245px; }

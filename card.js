@@ -107,8 +107,6 @@
       '--px': `${(state.y * 0.24 * depth).toFixed(3)}px`,
       '--py': `${(-state.x * 0.24 * depth).toFixed(3)}px`,
       '--rx': `${state.x.toFixed(4)}deg`, '--ry': `${state.y.toFixed(4)}deg`,
-      '--mx': `${50 + state.y * 2}%`, '--my': `${50 - state.x * 2}%`,
-      '--foil-angle': `${120 + state.y * 4 - state.x * 2}deg`,
       '--glare-strength': config.glareStrength,
       '--reactor-light': 0.65 + Math.max(0, 1 - Math.hypot(state.x, state.y) / 22) * 0.3
     };
@@ -117,8 +115,9 @@
     for (const [key, value] of Object.entries(variables)) card.style.setProperty(key, value);
     const lightX = 50 - state.y * 3 - Math.sin(state.flip * Math.PI / 180) * 45;
     faces.forEach((face, index) => {
-      face.style.setProperty('--glare-x', `${index ? 100 - lightX : lightX}%`);
-      face.style.setProperty('--glare-y', `${35 + state.x * 3}%`);
+      face.style.setProperty('--light-x', `${((index ? 100 - lightX : lightX) - 50) * 0.3}%`);
+      face.style.setProperty('--light-y', `${state.x * 0.6}%`);
+      face.style.setProperty('--light-turn', `${state.y * 0.6 - state.x * 0.3}deg`);
     });
   }
   function frame(now) {
