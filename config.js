@@ -2,8 +2,8 @@
 window.CARD_CONFIG = Object.freeze({
   maxRotateX: 12,
   maxRotateY: 16,
-  damping: 0.08,
-  sensorSensitivity: 0.8,
+  damping: 0.12,
+  sensorSensitivity: 1.0,
   parallax: 1,
   glareStrength: 0.7,
   foilStrength: 0.55,
