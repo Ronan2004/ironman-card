@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#101113">
+  <title>Iron Man · Stark Collection</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="config.js"></script>
+  <script defer src="motion.js"></script>
+  <script defer src="card.js"></script>
+</head>
+<body>
+  <main>
+    <header class="page-title"><span></span><h1>IRON MAN</h1><span></span></header>
+    <div class="scene" tabindex="0" aria-label="Interactive Iron Man collectible" aria-describedby="instructions">
+      <div class="card" data-side="front">
+        <section class="card-face card-front" aria-label="Front: Iron Man Mark LXXXV, Armored Avenger. Personal collectible design study.">
+          <img class="plate" src="assets/front-plate.png" data-asset="frontPlate" alt="" draggable="false">
+          <img class="character" src="assets/front-art.png" data-asset="artwork" alt="Iron Man Mark 85 artwork by Jongju Kim / HAJE 714 for Marvel Battle Lines" draggable="false">
+          <div class="reactor" aria-hidden="true"><i></i><b></b></div>
+          <span class="asset-label" hidden>CONCEPT PLACEHOLDER</span>
+          <div class="glass" aria-hidden="true"></div>
+        </section>
+        <section class="card-face card-back" aria-label="Back: Stark Industries. Armor system Mark LXXXV. Designation Iron Man. Power Arc Reactor. Status active. Access Avengers. SI 3000. Fictional personal collectible." aria-hidden="true">
+          <img class="plate" src="assets/back-plate.png" data-asset="backPlate" alt="" draggable="false">
+          <img class="archive-reactor" src="assets/precision-reactor.svg" data-asset="backReactor" alt="Precision arc reactor with copper coils and triangular core" draggable="false">
+          <div class="glass" aria-hidden="true"></div>
+        </section>
+      </div>
+    </div>
+    <div class="controls">
+      <button id="motion" type="button" aria-pressed="false">ENABLE MOTION</button>
+      <div class="secondary-controls">
+        <button id="flip" type="button" aria-pressed="false">FLIP <span aria-hidden="true">↻</span></button>
+        <span aria-hidden="true"></span>
+        <button id="calibrate" type="button">CALIBRATE <span aria-hidden="true">⌖</span></button>
+      </div>
+    </div>
+    <p id="status" role="status" aria-live="polite"></p>
+    <p id="instructions" class="sr-only">Drag in any direction to tilt. Double tap or press Enter to flip. Arrow keys tilt; Escape centers the card.</p>
+    <noscript><p>Enable JavaScript to tilt and flip this card.</p></noscript>
+  </main>
+  <pre id="debug" hidden></pre>
+</body>
+</html>
